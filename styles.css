@@ -5,8 +5,8 @@
   --bg-color: #121212; /* фон страницы */
   --card-bg: #1e1e1e; /* фон «карточек»-контейнеров */
   --text-color: #e0e0e0; /* основной текст */
-  --accent: #1e88e5; /* цвет кнопки */
-  --accent-hover: #1565c0; /* кнопка при наведении */
+  --accent: #f8bf15; /* цвет кнопки */
+  --accent-hover: #be8b0c; /* кнопка при наведении */
 }
 
 * {
@@ -22,7 +22,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 50px auto;
   text-align: center;
   background: var(--card-bg);
@@ -40,7 +40,7 @@ button {
   padding: 12px 24px;
   font-size: 16px;
   background-color: var(--accent);
-  color: #fff;
+  color: #000000;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -61,4 +61,27 @@ button {
 .quote::before,
 .quote::after {
   content: '"';
+}
+
+.favorites-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.favorite-card {
+  background-color: #6c6a6a;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 25%;
+}
+
+.author {
+  font-style: italic;
+}
+
+#toggle-favorite-btn {
+  display: none;
 }

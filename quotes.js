@@ -1,24 +1,29 @@
 const quotes = [
   {
-    qoute: "Be yourself; everyone else is already taken",
+    quote: "Be yourself; everyone else is already taken",
     author: "Oscar Wilde",
+    isFavorite: false,
   },
   {
-    qoute:
+    quote:
       "Success is not final, failure is not fatal: it is the courage to continue that counts",
     author: "Winston Churchill",
+    isFavorite: false,
   },
   {
-    qoute: "Code is like humor. When you have to explain it, it’s bad",
+    quote: "Code is like humor. When you have to explain it, it’s bad",
     author: "Cory House",
+    isFavorite: false,
   },
   {
-    qoute: "In the middle of difficulty lies opportunity",
+    quote: "In the middle of difficulty lies opportunity",
     author: "Albert Einstein",
+    isFavorite: false,
   },
   {
-    qoute: "First, solve the problem. Then, write the code",
+    quote: "First, solve the problem. Then, write the code",
     author: "John Johnson",
+    isFavorite: false,
   },
 ];
 
