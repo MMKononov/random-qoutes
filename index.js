@@ -1,45 +1,33 @@
 import quotes from "./src/quotes.js";
 import { generateRandomInt } from "./src/utils/utils.js";
-import {
-  toggleFavoriteIcon,
-  showFavoriteCard,
-  hideFavoriteCard,
-} from "./src/favoritesHandler.js";
+import { handleFavorite } from "./src/favoritesHandler.js";
 
-const quoteElement = document.getElementById("quote");
-const quoteAuthorElement = document.getElementById("quote-author");
 const generateBtn = document.getElementById("generate-btn");
-const toggleFavoriteBtn = document.getElementById("toggle-favorite-btn");
-const favoritesContainer = document.getElementById("favorites-container");
 
 let currentQuoteIndex;
+let currentQuote = null;
 
-function generateRandomQuote() {
-  const randomIndex = generateRandomInt(quotes.length);
-  const { quote, author, isFavorite } = quotes[randomIndex];
-  currentQuoteIndex = randomIndex;
-  quoteElement.textContent = quote;
+function displayQuote(quote) {
+  const { text, author, isFavorite } = quote;
+  const quoteElement = document.getElementById("quote");
+  const quoteAuthorElement = document.getElementById("quote-author");
+  quoteElement.textContent = text;
   quoteAuthorElement.textContent = author;
-  toggleFavoriteIcon(isFavorite, toggleFavoriteBtn);
-  toggleFavoriteBtn.style.display = "inline-block";
+  handleFavorite(isFavorite);
 }
 
-function toggleFavorite() {
-  const currentQuote = quotes[currentQuoteIndex];
-  currentQuote.isFavorite = !currentQuote.isFavorite;
-  toggleFavoriteIcon(currentQuote.isFavorite, toggleFavoriteBtn);
-
-  if (currentQuote.isFavorite) {
-    showFavoriteCard(
-      currentQuote.quote,
-      currentQuote.author,
-      favoritesContainer
-    );
-  } else {
-    hideFavoriteCard(currentQuote.quote);
-  }
+function choseRandomQuote(quotes) {
+  const randomIndex = generateRandomInt(quotes.length);
+  currentQuoteIndex = randomIndex;
+  return quotes[randomIndex];
 }
 
-generateBtn.addEventListener("click", generateRandomQuote);
-toggleFavoriteBtn.addEventListener("click", toggleFavorite);
-generateRandomQuote();
+function generateAndDisplayRandomQuote() {
+  const randomQuote = choseRandomQuote(quotes);
+  currentQuote = randomQuote;
+  displayQuote(randomQuote);
+}
+
+generateBtn.addEventListener("click", generateAndDisplayRandomQuote);
+
+export { currentQuote };
