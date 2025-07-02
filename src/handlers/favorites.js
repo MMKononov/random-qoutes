@@ -1,4 +1,4 @@
-import { currentQuote } from "../index.js";
+import { currentQuote } from "./quote.js";
 
 const favoritesContainer = document.getElementById("favorites-container");
 const toggleBtn = document.getElementById("toggle-favorite-btn");
@@ -57,9 +57,4 @@ function hideFavoriteCard(text) {
   });
 }
 
-export {
-  toggleFavoriteIcon,
-  handleFavorite,
-  showFavoriteCard,
-  hideFavoriteCard,
-};
+export { handleFavorite };
