@@ -82,11 +82,6 @@ button {
   margin-block-end: 0.5em;
 }
 
-.quote-text::before,
-.quote-text::after {
-  content: '"';
-}
-
 .quote-author {
   font-size: 1.4em;
   margin-block-start: 0.5em;
