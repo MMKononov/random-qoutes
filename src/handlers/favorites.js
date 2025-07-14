@@ -6,33 +6,12 @@ function toggleFavoriteCard(quote, container) {
     : removeFavoriteCard(quote.id);
 }
 
-function handleFavorite(isFavorite) {
-  toggleFavoriteBtnIcon(isFavorite);
-}
-
-function toggleFavoriteBtnIcon() {
-  const btn = quoteFavoriteBtn;
-  if (btn.classList.contains('fa-solid')) {
-    btn.classList.remove('fa-solid');
-    btn.classList.add('fa-regular');
-  } else if (btn.classList.contains('fa-regular')) {
-    btn.classList.remove('fa-regular');
-    btn.classList.add('fa-solid');
-  }
-}
-
 function showFavoriteBtn(isFavorite) {
   const btn = quoteFavoriteBtn;
-  btn.style.display = 'inline-block';
-  if (isFavorite) {
-    btn.classList.remove('fa-regular');
-    btn.classList.add('fa-solid');
-  } else {
-    btn.classList.remove('fa-solid');
-    btn.classList.add('fa-regular');
-  }
+  if (btn.style.display === 'none') btn.style.display = 'inline-block';
+  btn.classList.toggle('fa-solid', isFavorite);
+  btn.classList.toggle('fa-regular', !isFavorite);
 }
-
 function hideFavoriteBtn() {
   quoteFavoriteBtn.style.display = 'none';
 }
@@ -61,11 +40,9 @@ function removeFavoriteCard(id) {
 }
 
 export {
-  handleFavorite,
   toggleFavoriteCard,
   hideFavoriteBtn,
   showFavoriteCard,
-  toggleFavoriteBtnIcon,
   showFavoriteBtn,
   removeFavoriteCard,
 };

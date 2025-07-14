@@ -3,7 +3,6 @@ import {
   toggleFavoriteCard,
   hideFavoriteBtn,
   showFavoriteCard,
-  toggleFavoriteBtnIcon,
   showFavoriteBtn,
   removeFavoriteCard,
 } from './src/handlers/favorites.js';
@@ -12,6 +11,7 @@ import {
   localStorageGetItem,
 } from './src/utils/localStorage.js';
 import { getRandomQuote } from './src/handlers/randomQuote.js';
+import { removeObjectFromArrayById } from './src/utils/array.js';
 
 const CURRENT_QUOTE_KEY = 'currentQuote';
 const FAVORITE_QUOTES_KEY = 'favoriteQuotes';
@@ -27,14 +27,9 @@ function removeFavoriteQuote(id) {
   if (id === currentQuote.id) {
     toggleCurrentQuote();
   } else {
-    favoriteQuotes.splice(
-      favoriteQuotes.findIndex((favoriteQuote) => favoriteQuote.id === id),
-      1
-    );
-
+    removeObjectFromArrayById(favoriteQuotes, id);
     removeFavoriteCard(id);
     localStorageSetItem(FAVORITE_QUOTES_KEY, favoriteQuotes);
-
     // const currentQuote = document.querySelector('[data-current-quote-id]');
     // const currentQuoteId = currentQuote.dataset.currentQuoteId;
   }
@@ -43,16 +38,13 @@ function removeFavoriteQuote(id) {
 function toggleCurrentQuote() {
   currentQuote.isFavorite = !currentQuote.isFavorite;
 
-  toggleFavoriteBtnIcon();
+  showFavoriteBtn(currentQuote.isFavorite);
   localStorageSetItem(CURRENT_QUOTE_KEY, currentQuote);
 
   if (currentQuote.isFavorite) {
     favoriteQuotes.push({ ...currentQuote });
   } else {
-    favoriteQuotes.splice(
-      favoriteQuotes.findIndex((quote) => quote.id === currentQuote.id),
-      1
-    );
+    removeObjectFromArrayById(favoriteQuotes, currentQuote.id);
   }
   toggleFavoriteCard(currentQuote, favoritesContainer);
   localStorageSetItem(FAVORITE_QUOTES_KEY, favoriteQuotes);
